@@ -1,0 +1,14 @@
+# Redirect semua request ke https (opsional, untuk production)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Protect backup folder
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^backups/.*\.sql$ - [F,L]
+</IfModule>
+
+# PHP settings
+php_value upload_max_filesize 20M
+php_value post_max_size 20M
